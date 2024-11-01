@@ -102,15 +102,16 @@ function _constructTranscripts(state: IReduxState): Map<string, string> {
         if (transcriptMessage) {
             let text = `${transcriptMessage.participant.name}: `;
 
+            text += `id:${id};`;
             if (transcriptMessage.final) {
-                text += transcriptMessage.final;
+                text += `final:${transcriptMessage.final};`;
             } else {
-                const stable = transcriptMessage.stable || '';
-                const unstable = transcriptMessage.unstable || '';
+                const stable = `stable:${transcriptMessage.stable || ''};`;
+                const unstable = `unstable:${transcriptMessage.unstable || ''};`;
 
                 text += stable + unstable;
             }
-
+            console.log(text);
             transcripts.set(id, text);
         }
     }
